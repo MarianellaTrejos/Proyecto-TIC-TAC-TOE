@@ -1,0 +1,87 @@
+package proyecto.gato;
+
+
+public class Juego {
+    
+    int tablero[][] = new int [3][3];
+
+      
+    public void ponerPunto(int x, int y, int jugador){
+        if(tablero[x][y] == 0){
+           tablero[x][y] = jugador;
+        } else{
+            System.out.println("ERROR");
+        }
+     }
+        
+    public void imprimirTablero(){
+        for (int i = 0 ;i <= (tablero.length-1);i++){
+            System.out.println("    ");
+            for (int j = 0 ;j <= (tablero.length-1);j++){
+                if (tablero[i][j] == 0){
+                    System.out.print("0");
+                }else{
+                    System.out.print(tablero[i][j]);    
+                }
+            }     
+        }
+        System.out.println("    ");  
+    }
+    
+    public void buscarGanador(){
+        //Buscar Ganador en las Filas
+        for (int i = 0 ;i <= (tablero.length-1);i++){
+            if (tablero[i][0]== 0 || tablero[i][0] == 0 || tablero[i][0] == 0){//aqui
+                continue;
+            }
+            int b = tablero[i][0];
+             if (b == tablero[i][1] && b == tablero[i][2]){
+                 System.out.print("Ganó jugador: "+ tablero[i][0] );
+                 System.out.println("  ");
+                 return;
+             }
+        }
+        //Buscar ganador en Columnas
+        for (int j = 0 ;j <= (tablero.length-1);j++){
+            if (tablero[0][j] == 0 || tablero[1][j] == 0 || tablero[2][j] == 0){
+                continue;
+            } 
+            int c = tablero[0][j];
+            if (c == tablero[1][j] && c == tablero[2][j]){
+                 System.out.print("Gana jugador: "+ tablero[0][j]);
+                 System.out.println("  ");
+                 return;
+            }
+        }
+        //Buscar ganador en Diagonal
+        
+            if (tablero[0][0] == tablero[1][1]  && tablero[0][0] == tablero[2][2]){
+                 System.out.print("Gana jugador: "+ tablero[0][0]);
+                 System.out.println("  ");
+                 return;
+            }//Fin if
+            
+        //Buscar ganador en Diagonal inversa
+            if (tablero[0][2] == tablero[1][1] && tablero[0][2] == tablero[2][2]){
+                 System.out.print("Gana jugador: "+ tablero[1][1]);
+                 System.out.println("  ");
+                 return;
+            }//Fin if 
+            //Buscar si el tablero está lleno(para posible empate)
+            int verifica = 0;
+            for (int i=0;i<=(tablero.length-1);i++){
+                for (int j=0;j<=(tablero.length-1);j++){
+                    if (tablero[i][j] == 0){
+                     verifica++;
+                    }
+                }
+            }
+            if (verifica == 0){
+                System.out.print("EMPATE");
+                
+                return;
+                
+            }
+    }//Fin buscaganador
+     
+}//Fin juego
